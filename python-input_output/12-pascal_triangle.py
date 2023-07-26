@@ -1,11 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
-n = 10  # Replace this with the desired value of n
-result_list = []
-
-for i in range(2, n):
+def generate_list(n):
+  """Generates a list of integers from 1 to n, inclusive."""
+  result_list = []
+  for i in range(1, n + 1):
     result_list.append(i)
+  return result_list
 
-result_list.append(1)
 
-print(result_list)
+if __name__ == "__main__":
+  n = 10
+  print(generate_list(n))
