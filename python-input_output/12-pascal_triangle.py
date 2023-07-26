@@ -1,7 +1,11 @@
-#!/usr/bon/python3
+#!/usr/bin/python3
 
+n = 10  # Replace this with the desired value of n
+result_list = []
 
+for i in range(2, n):
+    result_list.append(i)
 
-for 2 less than n
+result_list.append(1)
 
-add 1 to the end of the list
+print(result_list)
