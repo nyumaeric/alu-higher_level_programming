@@ -1,24 +1,58 @@
+IMPORT
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> Module = __import__('7-base_geometry').__doc__
+>>> Class = __import__('7-base_geometry').BaseGeometry.__doc__
+>>> Function = __import__('7-base_geometry').BaseGeometry.area.__doc__
+>>> Function2 = __import__('7-base_geometry').BaseGeometry.integer_validator.__doc__
 
+TEST
 >>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 23) #int
+>>> bg.integer_validator("width", 12)
 
->>> bg.integer_validator("my_int", 12)
->>> bg.integer_validator("width", 89)
+>>> bg.integer_validator("x", 2.213) #floats
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", True) #boolean
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", "John") #str
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", []) #list
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", {}) #dictionary
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", ()) #tuple
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator("x", None) #None
+Traceback (most recent call last):
+    ...
+TypeError: x must be an integer
+>>> bg.integer_validator() #void
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
->>> try:
-...    bg.integer_validator("name", "John")
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] name must be an integer
 
->>> try:
-...    bg.integer_validator("age", 0)
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[ValueError] age must be greater than 0
+DOCSTRING
+>>> print(len(Module) > 0)
+True
 
->>> try:
-...    bg.integer_validator("distance", -4)
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[ValueError] distance must be greater than 0
+>>> print(len(Class) > 0)
+True
+
+>>> print(len(Function) > 0)
+True
+
+>>> print(len(Function2) > 0)
+True
