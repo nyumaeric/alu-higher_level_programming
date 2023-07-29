@@ -1,3 +1,2 @@
--- Script to inserts a new row in the table "first_table" of database provided.
--- Querry to inserts a new row in the table "first_table" of database provided.
+-- inserts new row in first_table with id=89 and name='Holberton School' in current database in MySQL server
 INSERT INTO first_table (id, name) VALUES (89, "Holberton School");
