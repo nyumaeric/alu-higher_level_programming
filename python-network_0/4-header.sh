@@ -1,5 +1,3 @@
 #!/bin/bash
-url=$1
-header="X-HolbertonSchool-User-Id: 98"
-response=$(curl -s -H "$header" "$url")
-echo "$response"
+# script that takes in a URL as an argument, sends a GET request to the URL
+curl -sX GET -H "X-HolbertonSchool-User-Id: 98" "$1"
