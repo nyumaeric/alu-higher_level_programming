@@ -1,53 +1,122 @@
-The ``0-add_integer`` module
 ============================
+doctest for 0-add_integer.py
+============================
+``add_integer()`` returns the sum of its arguments
 
-Using ``add_integer``
----------------------
+SUCCESSFUL TEST CONDITIONS
+==========================
 
-	>>> add_integer = __import__('0-add_integer').add_integer
+testing addition of two integers, both single digit
+::
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(1, 2)
+3
 
-Now use it:
+testing addition of two integers, both multiple digits
+::
+>>> add_integer(99999, 87654321)
+87754320
 
-    #int, int
-    >>> print(add_integer(1, 2))
-    3
+testing addition of two negative integers
+::
+>>> add_integer(-2, -3)
+-5
 
-    #b negative
-    >>> print(add_integer(100, -2))
-    98
+testing addition of one positive, one negative integers
+::
+>>> add_integer(-1, 5)
+4
 
-    #1 int argument
-    >>> print(add_integer(2))
-    100
+testing addition of 1 integer and default value of 2nd int (98)
+::
+>>> add_integer(2)
+100
 
-    #3 int arguments
-    >>> print(add_integer(1, 2, 3))
-    Traceback (most recent call last):
-    ...
-    TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+testing addition of two floats
+::
+>>> add_integer(5.61, 2.3)
+7
 
-    #a float, b negative
-    >>> print(add_integer(100.3, -2))
-    98
+testing addition of 1 int, 1 float
+::
+>>> add_integer(9, 1.9247)
+10
 
-    #a negative, b float
-    >>> print(add_integer(-3, 12.4))
-    9
+testing addition of 1 float and default value of 2nd int (98)
+::
+>>> add_integer(27.1234)
+125
 
-    #int, str
-    >>> print(add_integer(4, "School"))
-    Traceback (most recent call last):
-    ...
-    TypeError: b must be an integer
+testing addition of large integer (2**32) and int
+::
+>>> add_integer(4294967296, 1)
+4294967297
 
-    #str, int
-    >>> print(add_integer("Holberton", 2))
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
+testing addition of two large integers (2**32)
+::
+>>> add_integer(4294967296, 4294967296)
+8589934592
 
-    #none
-    >>> print(add_integer(None))
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
+
+TEST CONDITIONS WHERE AN ERROR IS RAISED
+========================================
+
+testing addition of single infinity and default value of 2nd int (98)
+::
+>>> add_integer(float('inf'))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+
+testing how add_integer function handles no arguments
+::
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
+
+testing how add_integer function handles None argument
+::
+>>> add_integer(None)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+testing how add_integer function handles more than 2 arguments
+::
+>>> add_integer(1, 2, 3)
+Traceback (most recent call last):
+TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+testing how add_integer function handles 1st argument not of type int or float
+::
+>>> add_integer("9", 1)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+testing how add_integer function handles 2nd argument not of type int or float
+::
+>>> add_integer(7, "8")
+Traceback (most recent call last):
+TypeError: b must be an integer
+
+testing how add_integer function handles both arguments not of type int or float
+::
+>>> add_integer("5", "3")
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+testing how add_integer function handles if 1 argument is boolean
+::
+>>> add_integer(True, 1)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+testing how add_integer function handles if 1 argument is list
+::
+>>> add_integer([6], 1)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+testing how add_integer function handles float NaN argument
+::
+>>> add_integer(float("NaN"), 1)
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
